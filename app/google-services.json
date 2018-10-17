@@ -1,0 +1,135 @@
+{
+  "project_info": {
+    "project_number": "211491327466",
+    "firebase_url": "https://enena-anchi-2.firebaseio.com",
+    "project_id": "enena-anchi-2",
+    "storage_bucket": "enena-anchi-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211491327466:android:0f4fe8ab98281c38",
+        "android_client_info": {
+          "package_name": "com.afc_quotes.amharic_love_quotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211491327466-3ssbvkfpvke0ctl483deb22v7ue0ouf4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDagbi9mX6pr0CV_YlI2qxELwfhMe_8-Tc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211491327466:android:de6b5dcd3c352a3f",
+        "android_client_info": {
+          "package_name": "com.hailemix.yefikir_debdabe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211491327466-3ssbvkfpvke0ctl483deb22v7ue0ouf4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDagbi9mX6pr0CV_YlI2qxELwfhMe_8-Tc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211491327466:android:d2a91e62adcbf136",
+        "android_client_info": {
+          "package_name": "com.afc.amhariclovequotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211491327466-3ssbvkfpvke0ctl483deb22v7ue0ouf4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDagbi9mX6pr0CV_YlI2qxELwfhMe_8-Tc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211491327466:android:2508e2a987d99256",
+        "android_client_info": {
+          "package_name": "com.hailemix.yefikerdebdabe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211491327466-3ssbvkfpvke0ctl483deb22v7ue0ouf4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDagbi9mX6pr0CV_YlI2qxELwfhMe_8-Tc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
