@@ -53,5 +53,9 @@
     <string name="loading">loading</string>
     <string name="action_share">Ethiopian_Love_Letters</string>
     <string name="please_wait">ይጠብቁ..Please Wait</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="imageDescription">LoveImages</string>
+    <string name="action_settings">ስለ እኛ</string>
+
 
 </resources>

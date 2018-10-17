@@ -1,10 +1,14 @@
 package com.hailemix.yefikerdebdabe
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.FloatingActionButton
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ExpandableListView
@@ -19,7 +23,7 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener
 import java.util.ArrayList
 import java.util.LinkedHashMap
 
-class MainActivity : Activity(),RewardedVideoAdListener {
+class MainActivity : AppCompatActivity(),RewardedVideoAdListener {
 
     private lateinit var mInterstitialAd : InterstitialAd
 
@@ -1088,6 +1092,27 @@ class MainActivity : Activity(),RewardedVideoAdListener {
         )
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+         menuInflater.inflate(R.menu.share_menu,menu)
+         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if(id == R.id.action_privacy){
+            val uri = Uri.parse("https://google.com")
+            val intent = Intent(Intent.ACTION_VIEW,uri)
+            startActivity(intent)
+            return true
+        } else if(id == R.id.action_settings){
+            val intent = Intent(this@MainActivity,AboutUs::class.java)
+            startActivity(intent)
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 }
