@@ -1115,4 +1115,5 @@ class MainActivity : AppCompatActivity(),RewardedVideoAdListener {
         return super.onOptionsItemSelected(item)
     }
 
+
 }
