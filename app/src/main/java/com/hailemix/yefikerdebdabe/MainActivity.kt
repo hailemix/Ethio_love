@@ -1103,10 +1103,16 @@ class MainActivity : AppCompatActivity(),RewardedVideoAdListener {
         val id = item.itemId
 
         if(id == R.id.action_privacy){
-            val uri = Uri.parse("https://google.com")
-            val intent = Intent(Intent.ACTION_VIEW,uri)
-            startActivity(intent)
+            try {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"))
+                startActivity(intent)
+
+            } catch(e : Throwable){
+                print("Error in Connecting to the server.Please check at $e")
+            }
+
             return true
+            
         } else if(id == R.id.action_settings){
             val intent = Intent(this@MainActivity,AboutUs::class.java)
             startActivity(intent)
