@@ -1,33 +1,11 @@
 package com.hailemix.yefikerdebdabe
-import android.util.Log
-import com.google.firebase.iid.FirebaseInstanceId
-import com.google.firebase.iid.FirebaseInstanceIdService
 
-/**
- * Created by user on 1/8/18.
- */
+import android.app.Service
+import android.content.Intent
+import android.os.IBinder
 
-class MyFirebaseInstanceIDService : FirebaseInstanceIdService(){
-
-
-    override fun onTokenRefresh() {
-
-        val refreshToken = FirebaseInstanceId.getInstance().token
-        Log.d(TAG,"Refreshed token: " + refreshToken!!)
-        sendRegistrationToServer(refreshToken)
-
+class MyFirebaseInstanceIDService : Service() {
+    override fun onBind(intent: Intent): IBinder? {
+        return null
     }
-
-    private fun sendRegistrationToServer(refreshToken: String){
-
-        refreshToken + "Hello"
-    }
-
-    companion object {
-
-        private val TAG = "FirebaseIDService"
-    }
-
-
-
 }

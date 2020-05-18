@@ -1,25 +1,23 @@
 package com.hailemix.yefikerdebdabe
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.MotionEvent
 import android.view.View
 import android.widget.ExpandableListView
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.reward.RewardItem
 import com.google.android.gms.ads.reward.RewardedVideoAd
 import com.google.android.gms.ads.reward.RewardedVideoAdListener
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.ArrayList
 import java.util.LinkedHashMap
 
@@ -28,26 +26,20 @@ class MainActivity : AppCompatActivity(),RewardedVideoAdListener {
     private lateinit var mInterstitialAd : InterstitialAd
 
     override fun onRewardedVideoAdClosed() = Unit
-
     override fun onRewardedVideoAdLeftApplication() = Unit
-
     override fun onRewardedVideoAdLoaded() = Unit
-
+    override fun onRewardedVideoStarted() = Unit
+    override fun onRewardedVideoAdFailedToLoad(p0: Int) = Unit
     override fun onRewardedVideoAdOpened() = Unit
-
-    override fun onRewarded(rewardedLiterature: RewardItem?) {
-
-        rewardedLiterature.apply {
-
-            rewardValue += 10
-
-        }
-
+    override fun onRewardedVideoCompleted() {
+        TODO("Not yet implemented")
     }
 
-    override fun onRewardedVideoStarted() = Unit
-
-    override fun onRewardedVideoAdFailedToLoad(p0: Int) = Unit
+    override fun onRewarded(rewardedLiterature: RewardItem?) {
+        rewardedLiterature.apply {
+            rewardValue += 10
+        }
+    }
 
     private lateinit var myChildList: MutableList<String>
     private lateinit var parentListItems: MutableMap<String, List<String>>
@@ -60,7 +52,6 @@ class MainActivity : AppCompatActivity(),RewardedVideoAdListener {
     private var defaultMessage = arrayOf("...")
     private lateinit var mRewardedVideoAd : RewardedVideoAd
     private var showTextOnce = true
-
 
     init {
 
@@ -106,7 +97,7 @@ class MainActivity : AppCompatActivity(),RewardedVideoAdListener {
                 else -> loadChild(defaultMessage)
             }
 
-            parentListItems.put(HoldItem, myChildList)
+            parentListItems[HoldItem] = myChildList
         }
         expandabilityView = findViewById(R.id.expandableListView1)
 
@@ -129,10 +120,7 @@ class MainActivity : AppCompatActivity(),RewardedVideoAdListener {
                 } else {
                     Log.d("caution","New articles are already opened")
                 }
-
             }
-
-
         }
 
         expandabilityView.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
@@ -283,23 +271,15 @@ class MainActivity : AppCompatActivity(),RewardedVideoAdListener {
 
                     "መቼም በኛ ጊዜ" -> titleOfContent = detailContents[53]
 
-
                     else -> {
 
                         Log.d("error", "Please Try Again!")
                     }
-
                 }
-
                 startActivity(intent)
-
                 true
             }
-
         }
-
-
-
     }
 
 
@@ -1061,20 +1041,20 @@ class MainActivity : AppCompatActivity(),RewardedVideoAdListener {
                         "ቁማር የበላሽን ዉሃ አጣጭ አግኝተሸ\n\n" +
                         "ይማርህ በይልኝ ለምስኪኑ አለቃሽ\n\n" +
                         "እጆችሽን ይዞ ዝላይ ላጫወተሸ\n\n\n",
-                "አልጋ ላይ ቁጭ ብዬ ተክዣለሁ፡፡ ሚስቴ እንደሞተ ሰዉ ተኝታለች፤ትኩር ብዬ አየኋት…እንዴት ታድላለች! ሰአቱን ስመለከት ከሌሊቱ 9 ሰአት ይላል፤ በዚህ ዉድቅት ሌሊት ድንገት ከእንቅልፌ መነሳቴና  ትካዜ ዉስጥ መግባቴ እንቆቅልሽ ሆኖብኛል፡፡\n\n\n" +
+                 "አልጋ ላይ ቁጭ ብዬ ተክዣለሁ፡፡ ሚስቴ እንደሞተ ሰዉ ተኝታለች፤ትኩር ብዬ አየኋት…እንዴት ታድላለች! ሰአቱን ስመለከት ከሌሊቱ 9 ሰአት ይላል፤ በዚህ ዉድቅት ሌሊት ድንገት ከእንቅልፌ መነሳቴና ትካዜ ዉስጥ መግባቴ እንቆቅልሽ ሆኖብኛል፡፡\n\n\n" +
                         "ዉብ ከናፍርቶቿን በትኩረት አየሁት፣ቀይ ሮዝ አበባ የመሰለ ከንፈር…እንዴት አባቱ ያምራል…!ፓ! ግመጡኝ ግመጡኝ ይላል… ድንገት ዝቅ ብዬ ልስማት ተጠጋሁና እንደሃዉልት ተገትሬ ቀረሁ…\n\nከንፈሯ የሌላ ሰዉ ከንፈር መሰለኝ..ለምን እንደሆነ ባላዉቅም የሚስቴን ከንፈር ልክ እንደሃብል አንገቴ ላይ አንጠልጥዬ መሄድም ፈለግኩ፡፡ ወይ ጉድ…ምን አይነት እብደት ጀመረኝ? ‹ክፉ ዘመን ..ማን ያዉቃል አንዱ ይሄንን ለጋ ከንፈር ተከራይቶት ቢሆንስ?› አለ የሆነዉ የሃሳቤ ክፋይ…\n\n\n" +
-                        "‹በአስጨናቂና አመንዝራ ትዉልድ  ቆንጆ ሚስት ላገባ ወንድ ይብላኝለት! አቤት መከራዉ! በገባ በወጣ ቁጥር ‹የሚስቱ አድናቂዎች› ድግስ ተደግሶ እንደተጋበዙ ጅቦች› ሚስቱን ከበዉበት ሲመለከት ምን ይሆን የሚሰማዉ?›\n\nብዬ ለደቂቃ አሰብኩ…መልስ ይሰጠኝ ይመስል የሚስቴ ፎቶ ላይ አፍጥጬ ቀረሁ!\n" +
-                        "እሷ ሆዬ ስትወራጭ አንሶላዉን አሽቀንጥራ  ራቁቷን ቀረች! ቀይና ዉብ የሆነዉ ዳሌዋ በሌላ ተባእት ከሩቅ በፉጨት ምልክት ሲሰጠዉ የሚስቅ መሰለኝ፡፡ ቀናሁ….አንገበገበኝ! ሆሆሆሆ…ሆሆ ዛሬ ምን ሆኛለሁ!?\n\nሚስቴ እንደምታፈቅረኝ አልጠራጠርም እና ይህን ያህል ቅናት ዉስጤ መንደዱ  ከመልካም ይሁን አይሁን ሊገባኝ አልቻለም፡፡\n\nእንደምንም  ብዬ ከጎኗ አቅፌያት ተኛሁ…አሁንም እንቅልፌ ከእናት አካሉ ተለይቶ ርቆኝ ላጥ ብሏል! ደስ የሚለዉ ነገር ፀጉሯን እየዳበስኩ እንቅልፍ ሆዬ ከች በኮሮኮንች! የእንቅልፍ መኪና ላይ ተጭቼ በረርኩ!\n" +
+                         "‹በአስጨናቂና አመንዝራ ትዉልድ ቆንጆ ሚስት ላገባ ወንድ ይብላኝለት! አቤት መከራዉ! በገባ በወጣ ቁጥር ‹የሚስቱ አድናቂዎች› ድግስ ተደግሶ እንደተጋበዙ ጅቦች› ሚስቱን ከበዉበት ሲመለከት ምን ይሆን የሚሰማዉ?›\n\nብዬ ለደቂቃ አሰብኩ…መልስ ይሰጠኝ ይመስል የሚስቴ ፎቶ ላይ አፍጥጬ ቀረሁ!\n" +
+                         "እሷ ሆዬ ስትወራጭ አንሶላዉን አሽቀንጥራ ራቁቷን ቀረች! ቀይና ዉብ የሆነዉ ዳሌዋ በሌላ ተባእት ከሩቅ በፉጨት ምልክት ሲሰጠዉ የሚስቅ መሰለኝ፡፡ ቀናሁ….አንገበገበኝ! ሆሆሆሆ…ሆሆ ዛሬ ምን ሆኛለሁ!?\n\nሚስቴ እንደምታፈቅረኝ አልጠራጠርም እና ይህን ያህል ቅናት ዉስጤ መንደዱ ከመልካም ይሁን አይሁን ሊገባኝ አልቻለም፡፡\n\nእንደምንም ብዬ ከጎኗ አቅፌያት ተኛሁ…አሁንም እንቅልፌ ከእናት አካሉ ተለይቶ ርቆኝ ላጥ ብሏል! ደስ የሚለዉ ነገር ፀጉሯን እየዳበስኩ እንቅልፍ ሆዬ ከች በኮሮኮንች! የእንቅልፍ መኪና ላይ ተጭቼ በረርኩ!\n" +
                         "ሚስቴን ከሩቁ እየተከታተልኳት ነዉ፡፡ ከቤት ስትወጣ ስብሰባ እንዳለባትና አርፍዳ ልትመጣ እንደምትችል ጠዋት ቁርስ እየበላን ነግራኛለች፡፡ \n\nይሁን እንጂ የምትናገረዉ ነገር ሁሉ ከአንገት በላይ ሆነብኝ..ላምናት አልቻልኩም! ከጀርባዬ ዘግናኝ ወንጀል እየተፈፀመብኝ ቢሆንስ? ዛሬማ አልፋታትም ያበጠዉ ይፈነዳል!!\n\n\n" +
                         "አጭር ቀሚስ አድርጋለች…ቀሚሱ ደግሞ ባለፈዉ ለልደቷ የገዛሁላት የሚያምር ቀይ ቀሚስ ነበር፡፡ ቁርስ በልተን እንደጨረስን ‹ማርዬ ቶሎ እመለሳለሁ እሺ …እሟሟ!› ጉንጬን ስማኝ ዉልቅ አለች፡፡\n\n\n" +
                         "አንድ የታክሲ ጥቅስ ድንገት አእምሮዬ ላይ ብልጭ አለ…‹ቆንጆ ሚስት ያገባና በሬ ያረደ ብቻዉን አይበላም!›\n\n\n" +
                         "ሚስቴ ገና እግሯ እንደወጣ የስለላ ስራዬን ጊዜ ሳልገድል ጀመርኩ፡፡በግምት 200 ሜትር ላይ ሆኜ እንቅስቃሴዋን ሁሉ እየተከታተልኩ ነበር፡፡ ላዳ ታክሲ ይዛ ተፈተለከች…ማን ይለቃታል? እኔም በሌላ ላዳ ተከተልኳት፡፡\n\n\n" +
-                        "ለአንድ ሰአት ከተጓዘች በኋላ የሆነ ትልቅ ግቢ በር ፊት ለፊት ታክሲዉ አቆመ፡፡ከታክሲዉ ወርዳ በሩን ማንኳኳት ጀመረች…ግቢዉ በጣም የሚያምር እንደሆነ  ከዉጪ አይቶ መገመት ይቻላል፡፡\n\n‹ስብሰባ እገባለሁ ብላኝ እዚህ ምን ትሰራለች? ምን ታደርጋለች? ምን…› ሚሊየን ጥያቄ ጭንቅላቴን ሊያፈነዳዉ ደረሰ፡፡ ጊዜ ሳላባክን ከታክሲ ወርጄ የሆነ ሱቅ ጎን ቆሜ ነገሩን እየተከታተልኩ ነበር፡፡\n\n\n" +
+                         "ለአንድ ሰአት ከተጓዘች በኋላ የሆነ ትልቅ ግቢ በር ፊት ለፊት ታክሲዉ አቆመ፡፡ከታክሲዉ ወርዳ በሩን ማንኳኳት ጀመረች…ግቢዉ በጣም የሚያምር እንደሆነ ከዉጪ አይቶ መገመት ይቻላል፡፡\n\n‹ስብሰባ እገባለሁ ብላኝ እዚህ ምን ትሰራለች? ምን ታደርጋለች? ምን…› ሚሊየን ጥያቄ ጭንቅላቴን ሊያፈነዳዉ ደረሰ፡፡ ጊዜ ሳላባክን ከታክሲ ወርጄ የሆነ ሱቅ ጎን ቆሜ ነገሩን እየተከታተልኩ ነበር፡፡\n\n\n" +
                         "አንድ ግድንግድ ወጠምሻ ጎረምሳ የግቢዉን በር ከፈተ፣ፊቷ ላይ ያየሁትን ፍልቅልቅ ደስታ የሰርጌ ቀን እንኳን አላየሁትም፡፡ አቀፋትና ከንፈሯን…አዎ ከንፈሯን ሳ…መ…ዉ! ጉድ!!\n\n\n" +
-                        "ይህን ያየሁ ቅፅበት ዉስጤ ሺህ አመት ዉሃ አይቶ እንደማያዉቅ አለት ደርቆ ቀረ! አንጀቴና ልቤ ሲጨፈላለቁ ተሰማኝ..በዉስጤ ንዴትና ቁጣ ሳይሆን ልገልፀዉ የማልችለዉ ስብራትን አስተናገድኩ!፡\n\n\n" +
+                         "ይህን ያየሁ ቅፅበት ዉስጤ ሺህ አመት ዉሃ አይቶ እንደማያዉቅ አለት ደርቆ ቀረ! አንጀቴና ልቤ ሲጨፈላለቁ ተሰማኝ..በዉስጤ ንዴትና ቁጣ...ልገልፀዉ የማልችለዉ ስብራትን አስተናገድኩ!፡\n\n\n" +
                         "እጆቿን ይዞ ወደግቢዉ ጎትቶ አስገባት…እየተፍለቀለቀች ገባች! እየተንደረደርኩ ወደበሩ ተጠጋሁ…ጠጋ ጠጋ..ሰዉነቴ እየተንቀጠቀጠ ነበር፡፡ በሩን ላንኳኳ እጆቼን ሳወጣ እጆቼ የሉም! እጄ የት ሄደ??፡\n\nእሱም እንደሚስቴ አደመ ማለት ነዉ???  ይሁን ብዬ ልጣራ መጮህ ጀመርኩ…ግን ድምፄም አይሰማም፣በአጭሩ ተዳፍኗል፡፡ላለቅስም ፈለግኩ ግን እንባ እንኳን ከሚስቴ ጋር ግቢዉ ዉስጥ ተደበቀ!?፡\n\n\n" +
                         "ሰዉ ዉስጡ ሲበጠበጥ እጅና እግሩ አይሰራም..ሽባ ይሆናል፡፡ ደም ብዛትና ስኳር ሽባ ከሚያደርጉት ህመም በበለጠ ማንነቱ ከፊቱ ሲሰባበር፣ሲወረወር ይሰማዋል!፡\n\n\n" +
-                        "‹ማርታ! ማርታ! …ማርታ!! ግን ለምን? …ለምን ? ?› ድንገት ጩኸቴ ተሰማኝ ‹በስመአብ! አንተ ምን ሆነህ ነዉ ዛሬ?› ማርታ ከቅዠት ህልሜ ስትቀሰቅሰኝ ላብ ሰዉነቴን አጥምቆታል…ላቤ እንደፏፏቴ  ይንቆረቆራል፡፡ ፡\n\n ‹የኔ ሆድ ምን አስነኩህ?...ከጎንህ እኮ ነኝ ፍቅሬ ..እሽሽሽሽ› እቅፍ አድርጋ ፀጉሬን መዳበስ ጀመረች፡፡፡\n\n\n" +
+                         "‹ማርታ! ማርታ! …ማርታ!! ግን ለምን? …ለምን ? ?› ድንገት ጩኸቴ ተሰማኝ ‹በስመአብ! አንተ ምን ሆነህ ነዉ ዛሬ?› ማርታ ከቅዠት ህልሜ ስትቀሰቅሰኝ ላብ ሰዉነቴን አጥምቆታል…ላቤ እንደፏፏቴ ይንቆረቆራል፡፡ ፡\n\n ‹የኔ ሆድ ምን አስነኩህ?...ከጎንህ እኮ ነኝ ፍቅሬ ..እሽሽሽሽ› እቅፍ አድርጋ ፀጉሬን መዳበስ ጀመረች፡፡፡\n\n\n" +
                         "ያየሁት ቅዠት ወደፊት ሊመጣዉ ካለዉ መከራ በትንሹ ተቆንጥሮ የተሰጠኝ መሰለኝ፡፡ ህልም መሆኑ ቢያስደስተኝም ያላሰብኩት ሃሳብ ዉስጤ ተዘራ፡፡፡\n\nከእንቅልፌ ነቅቼ እንኳን ያ የታክሲ ላይ ጥቅስ ከህልም አለም ተከትሎኝ አሁንም ፊቴ ላይ ተደቅኗል….‹ቆንጆ ያገባና በሬ ያረደ..› ይልሃል ይሄ ነዉ!!! \n\n\n"
                 ,
 
@@ -1091,7 +1071,6 @@ class MainActivity : AppCompatActivity(),RewardedVideoAdListener {
                         "ስኒ ከጀበና ጀበናም ሆነዋል \n\n\n"
         )
 
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -1100,11 +1079,13 @@ class MainActivity : AppCompatActivity(),RewardedVideoAdListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         val id = item.itemId
+        val linkUrl = "https://ethiocoderzone.wordpress.com/2018/10/11/%E1%8B%A8%E1%8D%8D%E1%89%85%E1%88%AD-%E1%8B%B0%E1%89%A5%E1%8B%B3%E1%89%A4-ethiopian-romantic-letters/"
 
         if(id == R.id.action_privacy){
             try {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(linkUrl))
                 startActivity(intent)
 
             } catch(e : Throwable){
@@ -1112,12 +1093,11 @@ class MainActivity : AppCompatActivity(),RewardedVideoAdListener {
             }
 
             return true
-            
+
         } else if(id == R.id.action_settings){
             val intent = Intent(this@MainActivity,AboutUs::class.java)
             startActivity(intent)
         }
-
         return super.onOptionsItemSelected(item)
     }
 

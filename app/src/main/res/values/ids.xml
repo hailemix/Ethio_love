@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="my_menu_item" type="id">my_menu</item>
-    <item name="action_share" type="id">action_share</item>
+    <item name="my_menu_item" type="id" />
+    <item name="action_share" type="id" />
 </resources>

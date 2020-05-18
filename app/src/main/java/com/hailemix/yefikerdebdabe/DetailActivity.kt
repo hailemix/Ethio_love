@@ -1,22 +1,19 @@
 package com.hailemix.yefikerdebdabe
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
-import android.support.design.widget.FloatingActionButton
-import android.support.v4.widget.NestedScrollView
-import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
-import android.widget.ScrollView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 /**
@@ -60,10 +57,9 @@ class DetailActivity : AppCompatActivity() {
         fontStyle =  Typeface.createFromAsset(assets,"fonts/amharic.ttf")
         mText.typeface = fontStyle
 
-        myScrollView.setOnScrollChangeListener ({ _: NestedScrollView?, _: Int, scrollY: Int, _: Int, oldScrollY: Int ->
+        myScrollView.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, oldScrollY: Int ->
 
             if(scrollY >= oldScrollY) {
-
 
                 floatingShareButton.postDelayed({
 
@@ -72,17 +68,14 @@ class DetailActivity : AppCompatActivity() {
                         1000)
             } else {
 
-
                 floatingShareButton.show()
-
 
             }
 
-        })
+        }
 
 
-
-     val shareButton  = findViewById<FloatingActionButton>(R.id.shareFloatingButton)
+        val shareButton = findViewById<FloatingActionButton>(R.id.shareFloatingButton)
 
         shareButton.setOnClickListener {
 
