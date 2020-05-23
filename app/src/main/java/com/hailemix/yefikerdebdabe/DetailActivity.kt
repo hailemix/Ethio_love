@@ -4,15 +4,14 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
+import android.util.DisplayMetrics
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -25,30 +24,49 @@ class DetailActivity : AppCompatActivity() {
 
     private var fontStyle : Typeface ?= null
     private lateinit var mInterstitialAd : InterstitialAd
-    private lateinit var mAdView : AdView
+    private lateinit var bannerAdView: AdView
+    private lateinit var adContainerView: FrameLayout
+    private val adSize: AdSize
+        get() {
+            val display = windowManager.defaultDisplay
+            val outMetrics = DisplayMetrics()
+            display.getMetrics(outMetrics)
 
+            val density = outMetrics.density
+            var adWidthPixels = bannerAdView.width.toFloat()
+            if (adWidthPixels == 0f) {
+                adWidthPixels = outMetrics.widthPixels.toFloat()
+            }
+            val adWidth = (adWidthPixels / density).toInt()
+            return AdSize.getPortraitAnchoredAdaptiveBannerAdSize(this, adWidth)
+        }
 
     companion object {
 
         private var detailCounter = 0
+        private const val AD_UNIT_ID = "ca-app-pub-3940256099942544/6300978111"   // Test Banner Ad
+        //  private const val AD_UNIT_ID = "ca-app-pub-9156727777369518/1351232045"   // Real Banner Ad but Check it in AdMob
+
+
     }
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail)
+        MobileAds.initialize(this)
 
-        MobileAds.initialize(this,"ca-app-pub-9156727777369518~6960929170")
         mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = "ca-app-pub-9156727777369518/9473264646"
+        //  mInterstitialAd.adUnitId = "ca-app-pub-9156727777369518/9473264646"  //Real Ad
+        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712" // Test Ad
         mInterstitialAd.loadAd(AdRequest.Builder().build())
 
-        mAdView = findViewById(R.id.myBannerAd)
-        mAdView.loadAd(AdRequest.Builder().build())
-
+        adContainerView = findViewById(R.id.myAdaptiveBanner)
+        bannerAdView = AdView(this)
+        adContainerView.addView(bannerAdView)
+        loadBanner()
+        val zContent = intent.getStringExtra("theContent")
         val mText = findViewById<TextView>(R.id.myDetail)
-        mText.text = MainActivity.titleOfContent
+        mText.text = zContent
 
         val interstitialBreak = findViewById<RelativeLayout>(R.id.detailInterstitialBreak)
         val myScrollView : NestedScrollView = findViewById(R.id.scrollController)
@@ -71,21 +89,17 @@ class DetailActivity : AppCompatActivity() {
                 floatingShareButton.show()
 
             }
-
         }
 
 
         val shareButton = findViewById<FloatingActionButton>(R.id.shareFloatingButton)
-
         shareButton.setOnClickListener {
 
             detailCounter += 1
-
             if(detailCounter % 3 == 0){
 
                 interstitialBreak.visibility = View.VISIBLE
                 floatingShareButton.hide()
-
 
                 Handler().postDelayed({
 
@@ -98,12 +112,10 @@ class DetailActivity : AppCompatActivity() {
 
                 Handler().postDelayed({
 
-
                     interstitialBreak.visibility = View.GONE
                     floatingShareButton.show()
 
                 },4000)
-
 
             } else {
 
@@ -112,14 +124,14 @@ class DetailActivity : AppCompatActivity() {
                 intent.type = "text/plain"
                 intent.putExtra(Intent.EXTRA_TEXT, mText.text.toString())
                 startActivity(Intent.createChooser(intent,"ለ..."))
-
             }
-
-
         }
-
-
     }
 
-
+    private fun loadBanner() {
+        bannerAdView.adUnitId = AD_UNIT_ID
+        bannerAdView.adSize = adSize
+        val adRequest = AdRequest.Builder().build()
+        bannerAdView.loadAd(adRequest)
+    }
 }

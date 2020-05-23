@@ -53,9 +53,13 @@
     <string name="loading">loading</string>
     <string name="action_share">Ethiopian_Love_Letters</string>
     <string name="please_wait">ይጠብቁ..Please Wait</string>
-    <string name="privacy_policy">Privacy Policy</string>
     <string name="imageDescription">LoveImages</string>
     <string name="action_settings">ስለ እኛ</string>
+    <string name="privacy_policy">✓ Privacy Policy</string>
+    <string name="youtube_videos">✓ ምርጥ ቪዲዮዎች</string>
+    <string name="about_us">✓ ስለ እኛ</string>
+    <string name="more_apps">✓ ተጨማሪ አፕሊኬሽን</string>
+    <string name="rate_it">✓ ደረጃ ይስጡ</string>
 
 
 </resources>

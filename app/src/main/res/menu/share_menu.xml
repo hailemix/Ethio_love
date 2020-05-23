@@ -3,9 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.afc.amhariclovequotes.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/about"
+        android:title="@string/about_us"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/youtube_videos"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/youtube_videos"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/more_apps"
+        android:title="@string/more_apps"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/rate"
+        android:checked="false"
+        android:title="@string/rate_it"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_privacy"

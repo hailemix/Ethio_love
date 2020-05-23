@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:ads="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/myBannerAd"
+    <FrameLayout
+        android:id="@+id/myAdaptiveBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-9156727777369518/1351232045">
-    </com.google.android.gms.ads.AdView>
+        android:layout_alignParentBottom="true" />
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollController"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/myBannerAd"
-        android:scrollbars="none">
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="65dp"
+        android:scrollbars="vertical">
     <TextView
         android:id="@+id/myDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:textSize="22sp"
         android:text="" />
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareFloatingButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat= "@drawable/sharefloatingbutton"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="28dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginBottom="22dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp" />
 
     <RelativeLayout
         android:id="@+id/detailInterstitialBreak"
