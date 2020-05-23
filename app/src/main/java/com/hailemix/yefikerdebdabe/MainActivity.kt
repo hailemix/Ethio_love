@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
 
             clickCounter += 1
 
-            if (clickCounter % 6 == 0) {
+            if (clickCounter % 4 == 0) {
 
                 interstitialController.visibility = View.VISIBLE
 
