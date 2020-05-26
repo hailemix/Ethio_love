@@ -22,6 +22,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var myChildList: MutableList<String>
     private lateinit var parentListItems: MutableMap<String, List<String>>
     private lateinit var expandabilityView: ExpandableListView
+    private lateinit var bannerAdView: AdView
+    private lateinit var adContainerView: FrameLayout
+
     private var myParentList: MutableList<String> = ArrayList()
     private var funnyLiterature = arrayOf("ይድረስ ለወንዶች", "የህግ ተመራቂ ለፍቅረኛዉ የፃፈዉ መልእክት", "የፍቅር አዙሪት", "ማትስ ተማሪ ለፍቅረኛዋ የፃፈችዉ ደብዳቤ", "የ‹ለምን አንተን ወደድኩህ?›ፍልስፍና", "አጭር መልእክት", "ስራ ፈላጊዎች ለ‹ስራ› የፃፉት ደብዳቤ", "ለብቻሽ አንብቢዉ", "ክትባት ዉሰጂ", " ይድረስ ለሜካኒካል ኢንጅነሯ… ", "የሳይኮሎጂ ተማሪ ለፍቅረኛዉ የፃፈላት ደብዳቤ", "ፍቅር ቆሎ አይደለም…!", "መዋጋት ቀለለኝ እህህ ከበደኝ", "ሶስተኛ አመት ተማሪ F አምጥታ የፃፈችዉ ደብዳቤ", "በዲያስፖራ ወንደላጤ የተከዳች ሴት ደብዳቤ", "*** ደራሲዉ ***")
     private var poems = arrayOf("መ…ጦር፣መጦ…ር", "ደብዳቤሽ ደርሶኛል", "እድሜሽ", "በህልሜ", "ዝናሽና ክብርሽ", "ዉይ አንቺ!", "ስቄ ስጨርስ", "ፍቅርሽ ሲመነዘር", "ይታየኛል ለኔ", "ፍቅርን ፍለጋ", "ቆይታ", "ዲቪሽ", "ተዉ ሆዴ ተዉ", "አይ አንተ!", "ፍቅርሽና ፍቅሬ", "እዉነታዉ", "ለብቻዬ ላልም", "ሲቪል መሀንዲስ ሲያፈቅር የሚፅፈው", "የሆነዉ ሆኖ. . .", "አንተ", "ዝምታህ", "ይሻለኛል", "ፍቅር እንደኑሮ ተወዷል ዘንድሮ", "ኪኪኪ...")
@@ -29,8 +32,6 @@ class MainActivity : AppCompatActivity() {
     private var moreLiterature = arrayOf("ባሌ ምን እያሰበ ነዉ?", "ወንድ ልጅ ሲያፈቅር", "የበርሃ ፍቅር", "ልጅ አማረኝ!", "ዝላይ", "ቖንጆ ያገባና…", "መቼም በኛ ጊዜ")
     private var defaultMessage = arrayOf("...")
     private var titleOfContent = ""
-    private lateinit var bannerAdView: AdView
-    private lateinit var adContainerView: FrameLayout
     private val adSize: AdSize
         get() {
             val display = windowManager.defaultDisplay
@@ -62,8 +63,8 @@ class MainActivity : AppCompatActivity() {
 
 
         mInterstitialAd = InterstitialAd(this)
-        //  mInterstitialAd.adUnitId = "ca-app-pub-9156727777369518/9473264646"  /* Real Ad*/
-        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712" // Test Ad
+        mInterstitialAd.adUnitId = "ca-app-pub-9156727777369518/9473264646"  // Real Interstitial Ad
+
 
         mInterstitialAd.loadAd(AdRequest.Builder().build())
         val interstitialController = findViewById<RelativeLayout>(R.id.mInterstitialAdBreak)
@@ -139,7 +140,6 @@ class MainActivity : AppCompatActivity() {
                     "የፍቅር አዙሪት" -> titleOfContent = detailContents[2]
 
                     "ማትስ ተማሪ ለፍቅረኛዋ የፃፈችዉ ደብዳቤ" -> titleOfContent = detailContents[3]
-                    //Adjust the Array below based on the top sequence
 
                     "የ‹ለምን አንተን ወደድኩህ?›ፍልስፍና" -> titleOfContent = detailContents[4]
 
@@ -276,9 +276,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
 
          private var clickCounter = 0
-        private const val AD_UNIT_ID = "ca-app-pub-3940256099942544/6300978111"   // Test Banner Ad
-
-        //  private const val AD_UNIT_ID = "ca-app-pub-9156727777369518/1351232045"   // Real Banner Ad but Check it in AdMob
+        private const val AD_UNIT_ID = "ca-app-pub-9156727777369518/1351232045"   // Real Banner Ad
         private var detailContents = arrayOf(
                 "ለዘጠኝ አመት በትዳር ዉስጥ በቆየሁባቸዉ አመታት ብዙ ነገሮችን ተምሬያለሁ፡፡ቀጣይ የጠቀስኳቸዉ ነጥቦች አንዲት ሴት አንተን እንድትወድህ፣እንድታከብርህና ካንተ ዉጪ ሌላ ወንድ ጋር አይኗን እንዳታማትር ያደርጋታል ብልህ ማጋነን አይሆንብኝም፤ እስኪ ሃሳቦቹን እንያቸዉ…\n\n" +
                         "1 •\tበፍቅር ግንኙነት ጊዜ ሴቶች ልክ የተኩላ ስብስብ እንዳለበት አይነት ባህሪይ አላቸዉ፡፡ብዙ የሚያስጠሉና ግራ ሊያጋቡህ የሚችሉ ብዙ ፍላጎቶቿን እንድታሟላላት ትጨቀጭቅሃለች፤መጨቅጨቅ ብቻ ሳይሆን ሁሌም የሚያንገፈግፉ ፍላጎቶቿን ማሟላት እንዳለብህ ህግ ታወጣልሃለች፡፡\n\nእሺ ብለህ ብታሟላላት በምድር ላይ እንደሷ ደስተኛ ሴት እንደማይኖር አጥብቃ ትነግርሃለች፡፡ 'አይ ይሄ አስፈላጊ አይደለም…ወፍ የለም!' ስትላት ታለቅሳለች፣ጨካኝና አረመኔ እንደሆንክ ትነግርሃለች፣ጥላህ እንደምትሄድና አይኗን እንደማታይ በመግለፅ ታስፈራራሃለች፡፡\n\n ወንድሜ እዚህ ጋር አንድ እዉነታ ልንገርህ ተከተለኝ፤የፈለገችዉን አይነት ዘዴ ትጠቀም፣የፈለገችዉን ትበልህ እንጂ 'ምንም ጠቃሚ አይደለም›' ብለህ ያመንክበትን ፍላጎቶቿን መቼም ቢሆን እንዳታሟላ!! እሷ ራሷ ምን እያደረገች እንዳለች ባታዉቅም አቋም ያለህ ወንድ መሆን አለመሆንህን እየፈተነችህ ነዉ፡፡አዛ ፍላጎቶቿን በጠየቀች ቅፅበት የምታደርግላት ከሆነ፣ባይታወቃትም እየናቀችህና ማመን እስከሚያቅትህ ድረስ አዛ ማድረጓን ከመቼዉም ጊዜ በላይ እየጨመረች  ትሄዳለች፡፡\n\nነገር ግን እነዚህ አላስፈላጊ ፍላጎቶቿ እንደማይጠቅሙ ነግረሃት ሁሌም በሃሳብህ ፍንክች ካላልክ ለጊዜዉ ትጠላሃለች ግን ሳምንታትና ወራት ሲያልፉ ከመቼዉም ጊዜ በላይ በፍቅርህ ተማርካ ትቀራለች፡፡\n\nሴት ልክ እንደተኩላ ናት፣የተሰራህበትን ባህሪይ ለማወቅና እዉነተኛ ወንድ መሆንህን ለመፈተን ትነሳለች፡፡ፈተናዉን ከወደቅክ ተበላህ ማለት ነዉ፤ወይ ጥላህ ትሄዳለች ወይም ደግሞ አብራችሁ እስካላችሁ ድረስ እንደናቀችህ ትኖራለች፡፡\n\n" +
@@ -1080,8 +1078,7 @@ class MainActivity : AppCompatActivity() {
                         "እጆቿን ይዞ ወደግቢዉ ጎትቶ አስገባት…እየተፍለቀለቀች ገባች! እየተንደረደርኩ ወደበሩ ተጠጋሁ…ጠጋ ጠጋ..ሰዉነቴ እየተንቀጠቀጠ ነበር፡፡ በሩን ላንኳኳ እጆቼን ሳወጣ እጆቼ የሉም! እጄ የት ሄደ??፡\n\nእሱም እንደሚስቴ አደመ ማለት ነዉ???  ይሁን ብዬ ልጣራ መጮህ ጀመርኩ…ግን ድምፄም አይሰማም፣በአጭሩ ተዳፍኗል፡፡ላለቅስም ፈለግኩ ግን እንባ እንኳን ከሚስቴ ጋር ግቢዉ ዉስጥ ተደበቀ!?፡\n\n\n" +
                         "ሰዉ ዉስጡ ሲበጠበጥ እጅና እግሩ አይሰራም..ሽባ ይሆናል፡፡ ደም ብዛትና ስኳር ሽባ ከሚያደርጉት ህመም በበለጠ ማንነቱ ከፊቱ ሲሰባበር፣ሲወረወር ይሰማዋል!፡\n\n\n" +
                         "‹ማርታ! ማርታ! …ማርታ!! ግን ለምን? …ለምን ? ?› ድንገት ጩኸቴ ተሰማኝ ‹በስመአብ! አንተ ምን ሆነህ ነዉ ዛሬ?› ማርታ ከቅዠት ህልሜ ስትቀሰቅሰኝ ላብ ሰዉነቴን አጥምቆታል…ላቤ እንደፏፏቴ ይንቆረቆራል፡፡ ፡\n\n ‹የኔ ሆድ ምን አስነኩህ?...ከጎንህ እኮ ነኝ ፍቅሬ ..እሽሽሽሽ› እቅፍ አድርጋ ፀጉሬን መዳበስ ጀመረች፡፡፡\n\n\n" +
-                        "ያየሁት ቅዠት ወደፊት ሊመጣዉ ካለዉ መከራ በትንሹ ተቆንጥሮ የተሰጠኝ መሰለኝ፡፡ ህልም መሆኑ ቢያስደስተኝም ያላሰብኩት ሃሳብ ዉስጤ ተዘራ፡፡፡\n\nከእንቅልፌ ነቅቼ እንኳን ያ የታክሲ ላይ ጥቅስ ከህልም አለም ተከትሎኝ አሁንም ፊቴ ላይ ተደቅኗል….‹ቆንጆ ያገባና በሬ ያረደ..› ይልሃል ይሄ ነዉ!!! \n\n\n"
-                ,
+                        "ያየሁት ቅዠት ወደፊት ሊመጣዉ ካለዉ መከራ በትንሹ ተቆንጥሮ የተሰጠኝ መሰለኝ፡፡ ህልም መሆኑ ቢያስደስተኝም ያላሰብኩት ሃሳብ ዉስጤ ተዘራ፡፡፡\n\nከእንቅልፌ ነቅቼ እንኳን ያ የታክሲ ላይ ጥቅስ ከህልም አለም ተከትሎኝ አሁንም ፊቴ ላይ ተደቅኗል….‹ቆንጆ ያገባና በሬ ያረደ..› ይልሃል ይሄ ነዉ!!! \n\n\n",
 
                 "አንድ ስኒ ቡና አምስት ብር ሆነና፡\n\n" +
                         "ጀበናም ከማድቤት ጀግኖ ወጣና፡\n\n" +
@@ -1093,7 +1090,7 @@ class MainActivity : AppCompatActivity() {
                         "ህልምን ያልማሉ ጀበናን ያያሉ\n\n" +
                         "ቡናና ጀበና ሜዳ ላይ ተያይተዉ \n\n" +
                         "አንደኛ ሁለተኛ ሶስተኛ ምእራፍ መዝገብ አዘጋጅተዉ\n\n" +
-                        "ስኒ ከጀበና ጀበናም ሆነዋል \n\n\n"
+                        "ስኒ ከጀበና ተዛዝለዉ ኖረዋል ደም ሆኗቸዉ ቡናዉ! \n\n\n"
         )
     }
 

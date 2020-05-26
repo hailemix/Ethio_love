@@ -16,7 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 /**
- * Created by user on 1/5/18.
+ * Created by user on 5/26/20.
  */
 
 class DetailActivity : AppCompatActivity() {
@@ -44,10 +44,7 @@ class DetailActivity : AppCompatActivity() {
     companion object {
 
         private var detailCounter = 0
-        private const val AD_UNIT_ID = "ca-app-pub-3940256099942544/6300978111"   // Test Banner Ad
-        //  private const val AD_UNIT_ID = "ca-app-pub-9156727777369518/1351232045"   // Real Banner Ad but Check it in AdMob
-
-
+        private const val AD_UNIT_ID = "ca-app-pub-9156727777369518/1351232045"   // Real Banner Ad
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,8 +53,7 @@ class DetailActivity : AppCompatActivity() {
         MobileAds.initialize(this)
 
         mInterstitialAd = InterstitialAd(this)
-        //  mInterstitialAd.adUnitId = "ca-app-pub-9156727777369518/9473264646"  //Real Ad
-        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712" // Test Ad
+        mInterstitialAd.adUnitId = "ca-app-pub-9156727777369518/9473264646"  // Real Interstitial Ad
         mInterstitialAd.loadAd(AdRequest.Builder().build())
 
         adContainerView = findViewById(R.id.myAdaptiveBanner)

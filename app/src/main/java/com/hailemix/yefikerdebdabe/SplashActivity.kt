@@ -18,27 +18,23 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.splash)
 
         val splashImage = findViewById<ImageView>(R.id.splashPicture)
-        val firstAnimation = AnimationUtils.loadAnimation(baseContext, R.anim.abc_fade_in)
-        val lastAnimation = AnimationUtils.loadAnimation(baseContext,R.anim.abc_fade_out)
+        val startingAnimation = AnimationUtils.loadAnimation(baseContext, R.anim.splash_animation)
 
-        splashImage.startAnimation(firstAnimation)
-        firstAnimation.duration = 2000
-        firstAnimation.setAnimationListener(object : Animation.AnimationListener{
+
+        splashImage.startAnimation(startingAnimation)
+        startingAnimation.duration = 2200
+        startingAnimation.setAnimationListener(object : Animation.AnimationListener {
 
             override fun onAnimationRepeat(p0: Animation?) = Unit
             override fun onAnimationStart(p0: Animation?) = Unit
             override fun onAnimationEnd(animation: Animation?) {
 
-                splashImage.startAnimation(lastAnimation)
-                lastAnimation.duration = 2800
                 finish()
 
                 val intent = Intent(this@SplashActivity, MainActivity::class.java)
                 startActivity(intent)
 
             }
-
-
         })
     }
 
